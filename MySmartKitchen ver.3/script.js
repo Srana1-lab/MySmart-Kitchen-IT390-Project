@@ -1,19 +1,12 @@
+// Declared here so future gemini.js API can access it when "Generate" is clicked
+let ingredients = [];
 
 // Add hover effect to navigation links
 document.querySelectorAll('nav ul a').forEach(link => {
 
-  link.addEventListener('mouseenter', function () {
-    const label = previews[this.textContent.trim()];
-    if (tooltip && label) {
-      tooltip.textContent = label;
-      tooltip.classList.add('visible');
-    }
-  });
-
+ // Preview text was removed already so function was removed
   link.addEventListener('mouseleave', function () {
-    if (tooltip) {
-      tooltip.classList.remove('visible');
-    }
+    // Drops focus so the link doesn't stay highlighted after clicking
     this.blur();
   });
 
@@ -30,11 +23,16 @@ if (input && addBtn && tagArea) {
     const trimmed = value.trim();
     if (!trimmed) return;
 
+    // added this line that pushes the ingredient into the array so file gemini.js can read it
+    ingredients.push(trimmed);
+
     const tag = document.createElement('span');
     tag.className = 'tag';
     tag.innerHTML = `${trimmed} <button aria-label="Remove ${trimmed}">✕</button>`;
 
     tag.querySelector('button').addEventListener('click', () => {
+    // Added this line so it removes the filter from the array when X is clicked
+      ingredients = ingredients.filter(i => i !== trimmed);
       tag.style.transform = 'scale(0)';
       tag.style.opacity   = '0';
       tag.style.transition = 'all 0.15s ease';
@@ -54,7 +52,7 @@ if (input && addBtn && tagArea) {
 
 }
 
-// ---- Filter toggle system ----
+// Filter toggle system
 const activeFilters = { cuisine: null, diet: [] };
 
 // Cuisine: single-select
@@ -69,7 +67,6 @@ document.querySelectorAll('#cuisine-filters .filter-pill').forEach(btn => {
     } else {
       activeFilters.cuisine = null;
     }
-    console.log('Active filters:', activeFilters);
   });
 });
 
@@ -83,6 +80,5 @@ document.querySelectorAll('#diet-filters .filter-pill').forEach(btn => {
     } else {
       activeFilters.diet = activeFilters.diet.filter(f => f !== filter);
     }
-    console.log('Active filters:', activeFilters);
   });
 });
