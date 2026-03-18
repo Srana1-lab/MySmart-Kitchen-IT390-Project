@@ -8,7 +8,7 @@ async function generateRecipes() {
         alert("Please add at least one ingredient first.");
         return;
     }
-
+    
     // Show a loading message while waiting for Gemini to respond
     document.getElementById("results-area").innerHTML = "Generating recipes...";
 
