@@ -33,7 +33,7 @@ async function generateRecipes() {
         - Ingredients (with measurements)
         - Step-by-Step Instructions (numbered)
         - Nutritional Estimate (Calories, Protein, Carbs, Fat)
-        - Storage 
+        - Storage intructions
 		Keep tone clear, encouraging, and practical.
         Avoid long introductions or unnecessary background.
         Use clean and organized, spacing between sections.
