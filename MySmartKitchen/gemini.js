@@ -1,7 +1,5 @@
-const GEMINI_API_KEY = "AIzaSyAptaMv3_xNcPITY_a6QAf6ZFFpRkF4Mhw";
-
 // The Gemini API endpoint we send requests to
-const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
+const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
 
 async function generateRecipes() {
 
@@ -10,7 +8,7 @@ async function generateRecipes() {
         alert("Please add at least one ingredient first.");
         return;
     }
-    
+
     // Show a loading message while waiting for Gemini to respond
     document.getElementById("results-area").innerHTML = "Generating recipes...";
 
@@ -18,7 +16,7 @@ async function generateRecipes() {
 	const cuisineText = activeFilters.cuisine ? `Cuisine type: ${activeFilters.cuisine}.` : '';
 	const dietText = activeFilters.diet.length > 0 ? `Dietary restrictions: ${activeFilters.diet.join(", ")}.` : '';
 
-    //Sends isntructions to gemini and sends 3 recipe/ dish options to give the user options rather than being locked into one result
+    //Sends instructions to gemini and sends 3 recipe/ dish options to give the user options rather than being locked into one result
     //Also connects the filter section line 3-4
     const prompt = `
         You are a professional recipe developer and culinary expert pulling from credible sources.
@@ -35,7 +33,7 @@ async function generateRecipes() {
         - Ingredients (with measurements)
         - Step-by-Step Instructions (numbered)
         - Nutritional Estimate (Calories, Protein, Carbs, Fat)
-        - Storage intructions
+        - Storage Instructions
 		Keep tone clear, encouraging, and practical.
         Avoid long introductions or unnecessary background.
         Use clean and organized, spacing between sections.
@@ -56,22 +54,30 @@ async function generateRecipes() {
             });
 			// Parse the response Gemini sends back
             const data = await response.json();
-            
-			// Extract the actual text from Gemini's response structure
-            const recipeText = data.candidates[0].content.parts[0].text;
-            
-               // Display the results on the page
-        displayResults(recipeText);
-        
-    // If something goes wrong like no internet or a bad key.
-    } catch (error) {
-        document.getElementById("results-area").innerHTML = "Something went wrong. Please try again.";
-        console.error(error);
-    }
-}
 
-function displayResults(recipeText) {
-    const resultsArea = document.getElementById("results-area");
-    // Replaces newlines with <br> so the recipe text is readable on the page
-    resultsArea.innerHTML = recipeText.replace(/\n/g, "<br>");
-}
+            // Check if the API returned an error instead of recipes
+            if (!response.ok || !data.candidates) {
+                console.error("API Error:", data);
+                document.getElementById("results-area").innerHTML =
+                    "API error: " + (data.error?.message || "Unknown error. Check console.");
+                return;
+            }
+
+            // Extract the actual text from Gemini's response structure
+            const recipeText = data.candidates[0].content.parts[0].text;
+
+            // Display the results on the page
+            displayResults(recipeText);
+
+            // If something goes wrong like no internet or a bad key.
+            } catch (error) {
+                document.getElementById("results-area").innerHTML = "Something went wrong. Please try again.";
+                console.error(error);
+            }
+            }
+
+            function displayResults(recipeText) {
+                const resultsArea = document.getElementById("results-area");
+                // Replaces newlines with <br> so the recipe text is readable on the page
+                resultsArea.innerHTML = recipeText.replace(/\n/g, "<br>");
+            }
