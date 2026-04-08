@@ -28,7 +28,7 @@
     <div class="main-content">
       <!-- Heading above search function (below section of code from FIGMA generation) -->
       <h2>What's in your kitchen?</h2>
-      <p>Add your available ingredients and let My Smart Kitchen generate personalized recipes for you</p>
+      <p>Add your available ingredients and let AI generate personalized recipes for you</p>
       
       <!-- The text/search box -->
       <div class="ingredient-section">
@@ -37,7 +37,7 @@
             type="text"
             id="ingredient-input"
             class="ingredient-input"
-            placeholder="Add an ingredient"
+            placeholder="Add an ingredient (e.g., chicken, tomatoes)..."
           />
           <button id="add-btn" class="add-btn">+ Add</button>
         </div>
@@ -73,7 +73,7 @@
       </div>
       
       <!-- Generate button that currently sits below filters, triggers Gemini API call, could be placed where "+ADD" is"-->
-      <!-- onclick calls generateRecipes() in gemini.js (when added) -->
+      <!-- onclick calls generateRecipes() in gemini.js -->
       <button id="generate-btn" onclick="generateRecipes()"> Generate Recipes</button>
 
       <!-- recipe results after generation -->
@@ -87,6 +87,6 @@
 
   <script src="config.js"></script>
   <script src="script.js"></script>
-  <script src="gemini.js"></script> 
+  <script src="gemini.js"></script>
 </body>
 </html>
