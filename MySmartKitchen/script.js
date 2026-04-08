@@ -82,3 +82,6 @@ document.querySelectorAll('#diet-filters .filter-pill').forEach(btn => {
     }
   });
 });
+
+
+
