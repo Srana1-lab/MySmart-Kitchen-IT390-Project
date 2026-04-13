@@ -90,3 +90,43 @@
   <script src="gemini.js"></script>
 </body>
 </html>
+<section class="inventory-section">
+  <h2>Kitchen Inventory</h2>
+
+  <form id="inventory-form">
+    <input type="text" id="item-name" placeholder="Item Name">
+    <input type="number" id="quantity" placeholder="Quantity">
+
+    <select id="category">
+      <option value="">Category</option>
+      <option value="Vegetable">Vegetable</option>
+      <option value="Fruit">Fruit</option>
+      <option value="Dairy">Dairy</option>
+      <option value="Meat">Meat</option>
+      <option value="Grain">Grain</option>
+      <option value="Spice">Spice</option>
+      <option value="Snack">Snack</option>
+      <option value="Drink">Drink</option>
+      <option value="Other">Other</option>
+    </select>
+
+    <input type="date" id="expiry-date">
+    <button type="submit">Add Item</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Qty</th>
+        <th>Category</th>
+        <th>Expiry</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="inventory-table-body"></tbody>
+  </table>
+
+  <button id="clear-all">Clear All</button>
+</section>
