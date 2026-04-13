@@ -382,3 +382,95 @@ footer {
   line-height: 1.8;
   color: var(--charcoal);
 }
+/* Inventory Page Styles */
+.inventory-page {
+  display: block;
+  padding: 20px;
+}
+
+.top-hero {
+  background: #ffffff;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 1100px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.inventory-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.inventory-form-section,
+.inventory-table-section,
+.inventory-info {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.inventory-form-section form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.inventory-form-section input,
+.inventory-form-section select,
+.inventory-form-section button {
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.inventory-form-section button,
+#clear-all,
+.delete-btn {
+  background-color: #0b7285;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.inventory-form-section button:hover,
+#clear-all:hover,
+.delete-btn:hover {
+  background-color: #085a6e;
+}
+
+.inventory-table-section table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.inventory-table-section th,
+.inventory-table-section td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.inventory-table-section th {
+  background-color: #0b7285;
+  color: white;
+}
+
+#clear-all {
+  margin-top: 15px;
+  padding: 10px 16px;
+}
+
+@media (max-width: 900px) {
+  .inventory-grid {
+    grid-template-columns: 1fr;
+  }
+}
